@@ -36,8 +36,20 @@ namespace WPFSample
 			var cb = sender as ComboBox;
 			var thisHandle = new WindowInteropHelper( this ).Handle;
 			var handle = new IntPtr(int.Parse(cb.SelectedItem.ToString().Split(';')[0]));
-			var rect = new DWMUtils.Rect(0,0,(int)this.Width,(int)this.Height);
-			DWMHandle = Utils.CreateThumbnail( thisHandle, handle, DWMHandle, rect );
+			var rect = new DWMUtils.Rect(0,0,(int)this.ActualWidth,(int)this.ActualHeight);
+			var scale = GetSystemScale();
+			var scaledRect = new DWMUtils.Rect(0,0,(int)(this.ActualWidth*scale), (int)(this.ActualHeight*scale));
+			DWMHandle = Utils.CreateThumbnail( thisHandle, handle, DWMHandle, scaledRect );
+		}
+
+		public double GetSystemScale()
+		{
+			var dpi = 1.0;
+			using( System.Drawing.Graphics graphics = System.Drawing.Graphics.FromHwnd( IntPtr.Zero ) )
+			{
+				dpi = graphics.DpiX / 96.0;
+			}
+			return dpi;
 		}
 	}
 }
