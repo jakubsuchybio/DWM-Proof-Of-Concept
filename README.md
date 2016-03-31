@@ -6,3 +6,5 @@ http://answers.microsoft.com/en-us/windows/forum/apps_windows_10-winapps/dwm-thu
 
 So Answer from Microsoft redirected me to MSDN Forums here:
 https://social.msdn.microsoft.com/Forums/en-US/b9392cf9-7082-4072-bea0-4f89182e5d39/dwm-thumbnail-size-in-wpf-vs-winforms-on-windows-10-is-broken?forum=windowsgeneraldevelopmentissues
+
+So after extensive dialog on MSDN Forum I found a solution or rather workaround... I just needed to scale up destination rectangle of DWM Thumbnail when setting properties.
